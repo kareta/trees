@@ -30,3 +30,15 @@ def test_it_adds_a_node_as_a_right_child():
     tree.add(node)
     assert tree.root.right is node
 
+
+def test_it_traverses_a_tree_in_order():
+    tree = BinarySearchTree()
+    keys = [50, 25, 30, 15, 100, 75, 56]
+    for key in keys:
+        node = Node(key)
+        tree.add(node)
+
+    expected = [15, 25, 30, 50, 56, 75, 100]
+    ordered_nodes = tree.traverse_in_order()
+    for index, node in enumerate(ordered_nodes):
+        assert expected[index] == node.key

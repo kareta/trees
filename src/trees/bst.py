@@ -23,7 +23,34 @@ class BinarySearchTree:
             elif node.key <= current.key and current.left is None:
                 current.left = node
                 return
-            elif node > current.key:
+            elif node.key > current.key:
                 current = current.right
-            elif node <= current.key:
+            elif node.key <= current.key:
                 current = current.left
+
+    def traverse_in_order(self):
+        if self.root is None:
+            return []
+
+        ordered_nodes = []
+        stack = [self.root]
+        while stack:
+            current = stack.pop()
+
+            if current.left is None:
+                ordered_nodes.append(current)
+
+            if current.left is None and current.right is not None:
+                stack.append(current.right)
+            elif current.left is not None:
+                stack.append(current.left)
+
+        return ordered_nodes
+
+
+
+
+
+
+
+
